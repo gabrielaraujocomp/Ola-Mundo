@@ -9,12 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --black: #1F1F1F;
-      --gray-900: #2A2A2A;
-      --gray-800: #353535;
-      --gray-700: #404040;
-      --gray-500: #888888;
-      --gray-300: #B8B8B8;
+      --black: #121212;
+      --gray-900: #1A1A1A;
+      --gray-800: #242424;
+      --gray-700: #2D2D2D;
+      --gray-500: #808080;
+      --gray-300: #A0A0A0;
       --white: #FAFAFA;
       --fire: #FF5722;
       --blue: #0070F3;
@@ -51,26 +51,28 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      backdrop-filter: blur(12px);
-      background: rgba(10, 10, 10, 0.7);
+      background: var(--black);
       border-bottom: 1px solid var(--gray-700);
     }
     .nav-inner {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      height: 64px;
+      padding: 24px 0;
+      flex-wrap: wrap;
     }
     .brand {
       display: flex;
-      align-items: center;
-      gap: 10px;
+      flex-direction: column;
+      gap: 8px;
       font-weight: 600;
       letter-spacing: -0.015em;
-      font-size: 16px;
+      font-size: 14px;
+      line-height: 20px;
+      min-width: 120px;
     }
     .brand-mark {
-      width: 22px; height: 22px;
+      width: 28px; height: 28px;
       border-radius: 6px;
       background: var(--fire);
       box-shadow: 0 0 0 1px rgba(255,87,34,.4), 0 0 20px rgba(255,87,34,.35);
@@ -184,11 +186,13 @@
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .hero-meta {
       margin-top: 48px;
+      padding-top: 24px;
       display: flex; gap: 48px; flex-wrap: wrap;
       font-size: 16px;
       color: var(--gray-300);
       line-height: 26px;
       letter-spacing: -0.01em;
+      border-top: 1px solid var(--gray-700);
     }
     .hero-meta strong {
       color: var(--fire);
@@ -196,19 +200,11 @@
       font-family: var(--font-mono);
       margin-right: 6px;
     }
-    .hero-meta::before {
-      content: "";
-      position: absolute;
-      left: -24px; top: 40px;
-      width: 120%;
-      height: 1px;
-      background: linear-gradient(to right, var(--fire), transparent);
-    }
-    .hero-meta { position: relative; padding-top: 24px; }
 
     /* ---------- SECTIONS ---------- */
-    section { padding: 96px 0; }
-    .section-head { margin-bottom: 48px; max-width: 720px; }
+    section { padding: 96px 0; border-top: 1px solid var(--gray-700); }
+    section:first-of-type { border-top: none; }
+    .section-head { margin-bottom: 64px; max-width: 720px; }
     .section-eyebrow {
       font-family: var(--font-mono);
       font-size: 13px;
@@ -217,14 +213,6 @@
       color: var(--fire);
       margin-bottom: 16px;
       font-weight: 600;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .section-eyebrow::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, var(--fire), transparent);
-      max-width: 120px;
     }
     .section-title {
       font-size: 40px;
@@ -257,17 +245,12 @@
     .card:hover { border-color: var(--gray-500); }
     .card-num {
       font-family: var(--font-mono);
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--gray-500);
       margin-bottom: 20px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .card-num::before {
-      content: "";
-      width: 20px; height: 1px;
-      background: linear-gradient(to right, var(--fire), transparent);
+      font-weight: 500;
     }
     .card-title {
       font-size: 20px;
@@ -374,7 +357,7 @@
     <div class="container nav-inner">
       <a href="#" class="brand">
         <span class="brand-mark"></span>
-        OnFire Club
+        <span>OnFire</span>
       </a>
       <nav class="nav-links">
         <a href="#manifesto">Manifesto</a>
@@ -448,7 +431,7 @@
   </section>
 
   <!-- PLATAFORMA -->
-  <section id="plataforma" style="border-top: 1px solid var(--gray-700);">
+  <section id="plataforma">
     <div class="container">
       <div class="section-head">
         <div class="section-eyebrow">// A plataforma</div>
@@ -496,7 +479,7 @@
   </section>
 
   <!-- FUNIL DE PRODUTOS -->
-  <section id="funil" style="border-top: 1px solid var(--gray-700);">
+  <section id="funil">
     <div class="container">
       <div class="section-head">
         <div class="section-eyebrow">// A escada de produtos</div>
@@ -550,7 +533,7 @@
   </section>
 
   <!-- NEWSLETTER -->
-  <section style="border-top: 1px solid var(--gray-700); padding: 64px 0;">
+  <section>
     <div class="container">
       <div style="max-width: 680px;">
         <div class="section-eyebrow">// Movimento em construção pública</div>
@@ -566,28 +549,13 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <section id="manifesto">
-    <div class="container">
-      <div class="cta-block">
-        <div>
-          <h3>Mais que uma empresa. Um movimento.</h3>
-          <p>Para quem decidiu parar de trabalhar para o negócio e fazer o negócio trabalhar para si.</p>
-        </div>
-        <div style="display:flex; gap: 12px;">
-          <a href="#" class="btn btn-primary btn-lg">Quero entrar</a>
-          <a href="#" class="btn btn-secondary btn-lg">Newsletter semanal</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
-      <div class="brand">
-        <span class="brand-mark"></span>
-        OnFire Club
+      <div class="brand" style="flex-direction: row; gap: 8px;">
+        <span class="brand-mark" style="width: 20px; height: 20px;"></span>
+        <span>OnFire Club</span>
       </div>
       <div class="footer-mono">
         © 2026 OnFire Club &middot; Léo Scorza, Flávia Modesto &amp; Gabriel Araújo
