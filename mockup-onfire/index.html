@@ -9,12 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --black: #0A0A0A;
-      --gray-900: #111111;
-      --gray-800: #1A1A1A;
-      --gray-700: #262626;
-      --gray-500: #737373;
-      --gray-300: #D4D4D4;
+      --black: #1F1F1F;
+      --gray-900: #2A2A2A;
+      --gray-800: #353535;
+      --gray-700: #404040;
+      --gray-500: #888888;
+      --gray-300: #B8B8B8;
       --white: #FAFAFA;
       --fire: #FF5722;
       --blue: #0070F3;
@@ -149,19 +149,20 @@
       align-items: center;
       gap: 8px;
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--gray-300);
-      padding: 4px 10px;
+      padding: 6px 12px;
       border: 1px solid var(--gray-700);
       border-radius: 4px;
       background: transparent;
+      font-weight: 500;
     }
-    .pill-fire { color: var(--fire); border-color: rgba(255,87,34,0.4); }
+    .pill-fire { color: var(--fire); border-color: rgba(255,87,34,0.6); }
     .pill-dot {
-      width: 6px; height: 6px; border-radius: 9999px; background: currentColor;
-      box-shadow: 0 0 8px currentColor;
+      width: 8px; height: 8px; border-radius: 9999px; background: currentColor;
+      box-shadow: 0 0 10px currentColor;
     }
 
     h1.display {
@@ -182,28 +183,48 @@
     }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .hero-meta {
-      margin-top: 40px;
-      display: flex; gap: 32px; flex-wrap: wrap;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--gray-500);
+      margin-top: 48px;
+      display: flex; gap: 48px; flex-wrap: wrap;
+      font-size: 16px;
+      color: var(--gray-300);
+      line-height: 26px;
+      letter-spacing: -0.01em;
     }
     .hero-meta strong {
-      color: var(--white);
-      font-weight: 500;
+      color: var(--fire);
+      font-weight: 600;
+      font-family: var(--font-mono);
       margin-right: 6px;
     }
+    .hero-meta::before {
+      content: "";
+      position: absolute;
+      left: -24px; top: 40px;
+      width: 120%;
+      height: 1px;
+      background: linear-gradient(to right, var(--fire), transparent);
+    }
+    .hero-meta { position: relative; padding-top: 24px; }
 
     /* ---------- SECTIONS ---------- */
     section { padding: 96px 0; }
     .section-head { margin-bottom: 48px; max-width: 720px; }
     .section-eyebrow {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--fire);
       margin-bottom: 16px;
+      font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-eyebrow::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--fire), transparent);
+      max-width: 120px;
     }
     .section-title {
       font-size: 40px;
@@ -236,11 +257,17 @@
     .card:hover { border-color: var(--gray-500); }
     .card-num {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 14px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--gray-500);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .card-num::before {
+      content: "";
+      width: 20px; height: 1px;
+      background: linear-gradient(to right, var(--fire), transparent);
     }
     .card-title {
       font-size: 20px;
@@ -272,17 +299,21 @@
     }
     .stack-line {
       display: flex; align-items: center; gap: 12px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--gray-300);
-      padding: 12px 0;
+      font-size: 15px;
+      color: var(--white);
+      padding: 14px 0;
       border-top: 1px solid var(--gray-700);
+      line-height: 26px;
+      letter-spacing: -0.01em;
     }
     .stack-line:first-of-type { border-top: 0; }
     .stack-line span.tag {
       margin-left: auto;
-      color: var(--gray-500);
-      font-size: 12px;
+      color: var(--gray-300);
+      font-size: 13px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
     .dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--fire); box-shadow: 0 0 8px rgba(255,87,34,.6); }
 
@@ -460,6 +491,77 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNIL DE PRODUTOS -->
+  <section id="funil" style="border-top: 1px solid var(--gray-700);">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">// A escada de produtos</div>
+        <h2 class="section-title">Do gratuito até a consultoria high-ticket.</h2>
+      </div>
+
+      <svg viewBox="0 0 1200 400" style="width: 100%; max-width: 100%; display: block; margin-bottom: 64px;">
+        <!-- Base gradient -->
+        <defs>
+          <linearGradient id="funnelGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#FF5722;stop-opacity:0.3" />
+            <stop offset="50%" style="stop-color:#FF5722;stop-opacity:0.15" />
+            <stop offset="100%" style="stop-color:#FF5722;stop-opacity:0.3" />
+          </linearGradient>
+        </defs>
+
+        <!-- Funil visual -->
+        <polygon points="100,80 1100,80 950,180 250,180" fill="url(#funnelGrad)" stroke="#FF5722" stroke-width="2" opacity="0.8"/>
+        <polygon points="250,180 950,180 800,280 400,280" fill="url(#funnelGrad)" stroke="#FF5722" stroke-width="2" opacity="0.6"/>
+        <polygon points="400,280 800,280 650,380 550,380" fill="url(#funnelGrad)" stroke="#FF5722" stroke-width="2" opacity="0.4"/>
+
+        <!-- Labels -->
+        <text x="600" y="120" text-anchor="middle" fill="#FAFAFA" font-size="18" font-weight="600" font-family="Geist,sans-serif">Conteúdo gratuito</text>
+        <text x="600" y="230" text-anchor="middle" fill="#FAFAFA" font-size="16" font-weight="600" font-family="Geist,sans-serif">Low tickets (produtos práticos)</text>
+        <text x="600" y="330" text-anchor="middle" fill="#FAFAFA" font-size="16" font-weight="600" font-family="Geist,sans-serif">Comunidade + Consultoria</text>
+      </svg>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <div class="card">
+          <div style="font-family: var(--font-mono); font-size: 14px; color: var(--fire); margin-bottom: 12px; font-weight: 600;">$0</div>
+          <h3 class="card-title" style="margin: 0 0 8px;">Instagram + YouTube + Newsletter</h3>
+          <p class="card-desc">Conteúdo diário, semanal e de valor puro.</p>
+        </div>
+        <div class="card">
+          <div style="font-family: var(--font-mono); font-size: 14px; color: var(--fire); margin-bottom: 12px; font-weight: 600;">$97–$297</div>
+          <h3 class="card-title" style="margin: 0 0 8px;">Mini produtos</h3>
+          <p class="card-desc">LP, agente de WhatsApp, 30 posts com IA.</p>
+        </div>
+        <div class="card">
+          <div style="font-family: var(--font-mono); font-size: 14px; color: var(--fire); margin-bottom: 12px; font-weight: 600;">$297–$997/mês</div>
+          <h3 class="card-title" style="margin: 0 0 8px;">Comunidade</h3>
+          <p class="card-desc">Plataforma, trilha, ferramentas exclusivas.</p>
+        </div>
+        <div class="card">
+          <div style="font-family: var(--font-mono); font-size: 14px; color: var(--fire); margin-bottom: 12px; font-weight: 600;">$3k–$10k+</div>
+          <h3 class="card-title" style="margin: 0 0 8px;">Consultoria &amp; Agência</h3>
+          <p class="card-desc">Resultado acelerado com Léo diretamente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section style="border-top: 1px solid var(--gray-700); padding: 64px 0;">
+    <div class="container">
+      <div style="max-width: 680px;">
+        <div class="section-eyebrow">// Movimento em construção pública</div>
+        <h2 class="section-title">Receba updates semanais do OnFire Club.</h2>
+        <p class="section-desc">Conteúdo prático, estratégia, e as melhores ideias direto na sua caixa de entrada.</p>
+
+        <form style="display: flex; gap: 8px; margin-top: 24px; flex-wrap: wrap;">
+          <input type="email" placeholder="seu@email.com" required style="flex: 1; min-width: 240px; height: 48px; padding: 0 16px; border: 1px solid var(--gray-700); border-radius: 6px; background: var(--gray-900); color: var(--white); font-family: var(--font-sans); font-size: 16px; letter-spacing: -0.01em; outline: none; transition: border 200ms var(--ease);" />
+          <button type="submit" class="btn btn-primary btn-lg" style="flex-shrink: 0;">Inscrever →</button>
+        </form>
+        <p style="font-size: 13px; color: var(--gray-500); margin-top: 12px;">Sem spam. Desmarcai quando quiser.</p>
       </div>
     </div>
   </section>
