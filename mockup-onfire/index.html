@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OnFire Club — Tecnologia para empresários lucrarem mais e trabalharem menos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0A0A0A;
+      --gray-900: #111111;
+      --gray-800: #1A1A1A;
+      --gray-700: #262626;
+      --gray-500: #737373;
+      --gray-300: #D4D4D4;
+      --white: #FAFAFA;
+      --fire: #FF5722;
+      --blue: #0070F3;
+
+      --font-sans: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+      --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 26px;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- NAV ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(10, 10, 10, 0.7);
+      border-bottom: 1px solid var(--gray-700);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      font-size: 16px;
+    }
+    .brand-mark {
+      width: 22px; height: 22px;
+      border-radius: 6px;
+      background: var(--fire);
+      box-shadow: 0 0 0 1px rgba(255,87,34,.4), 0 0 20px rgba(255,87,34,.35);
+    }
+    .nav-links {
+      display: flex; gap: 28px;
+      font-size: 14px;
+      color: var(--gray-300);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 16px;
+      border-radius: 6px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--white);
+      cursor: pointer;
+      transition: all 200ms var(--ease);
+    }
+    .btn-lg { height: 48px; padding: 0 20px; font-size: 16px; letter-spacing: -0.01em; }
+    .btn-primary {
+      color: var(--fire);
+      border-color: var(--fire);
+      box-shadow: 0 0 0 1px rgba(255, 87, 34, 0.4), 0 8px 32px rgba(255, 87, 34, 0.22);
+    }
+    .btn-primary:hover {
+      background: rgba(255, 87, 34, 0.08);
+    }
+    .btn-secondary {
+      color: var(--white);
+      border-color: var(--gray-700);
+    }
+    .btn-secondary:hover {
+      background: var(--gray-800);
+      border-color: var(--gray-500);
+    }
+    .btn-ghost {
+      color: var(--gray-300);
+    }
+    .btn-ghost:hover { background: var(--gray-800); color: var(--white); }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      padding: 120px 0 96px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -160px; left: 50%;
+      width: 720px; height: 720px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(255,87,34,0.15), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 880px; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      padding: 4px 10px;
+      border: 1px solid var(--gray-700);
+      border-radius: 4px;
+      background: transparent;
+    }
+    .pill-fire { color: var(--fire); border-color: rgba(255,87,34,0.4); }
+    .pill-dot {
+      width: 6px; height: 6px; border-radius: 9999px; background: currentColor;
+      box-shadow: 0 0 8px currentColor;
+    }
+
+    h1.display {
+      font-size: 72px;
+      line-height: 76px;
+      letter-spacing: -0.045em;
+      font-weight: 600;
+      margin: 24px 0 24px;
+    }
+    h1.display .accent { color: var(--fire); }
+    .hero-sub {
+      font-size: 20px;
+      line-height: 32px;
+      letter-spacing: -0.015em;
+      color: var(--gray-300);
+      max-width: 680px;
+      margin: 0 0 40px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-meta {
+      margin-top: 40px;
+      display: flex; gap: 32px; flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+    .hero-meta strong {
+      color: var(--white);
+      font-weight: 500;
+      margin-right: 6px;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section { padding: 96px 0; }
+    .section-head { margin-bottom: 48px; max-width: 720px; }
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--fire);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 40px;
+      line-height: 44px;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+      margin: 0 0 16px;
+    }
+    .section-desc {
+      font-size: 18px;
+      line-height: 28px;
+      letter-spacing: -0.012em;
+      color: var(--gray-500);
+      margin: 0;
+    }
+
+    /* ---------- GRID CARDS ---------- */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .card {
+      background: var(--gray-900);
+      border: 1px solid var(--gray-700);
+      border-radius: 10px;
+      padding: 32px;
+      transition: border-color 200ms var(--ease), transform 200ms var(--ease);
+    }
+    .card:hover { border-color: var(--gray-500); }
+    .card-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 24px;
+    }
+    .card-title {
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: -0.015em;
+      font-weight: 600;
+      margin: 0 0 12px;
+    }
+    .card-desc {
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: -0.005em;
+      color: var(--gray-500);
+      margin: 0;
+    }
+
+    /* ---------- PLATFORM ---------- */
+    .platform {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 16px;
+    }
+    .platform .card { padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .platform .card.span2 { grid-column: span 2; }
+    .platform-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .stack-line {
+      display: flex; align-items: center; gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--gray-300);
+      padding: 12px 0;
+      border-top: 1px solid var(--gray-700);
+    }
+    .stack-line:first-of-type { border-top: 0; }
+    .stack-line span.tag {
+      margin-left: auto;
+      color: var(--gray-500);
+      font-size: 12px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--fire); box-shadow: 0 0 8px rgba(255,87,34,.6); }
+
+    /* ---------- CTA ---------- */
+    .cta-block {
+      border: 1px solid var(--gray-700);
+      border-radius: 16px;
+      padding: 64px;
+      background:
+        radial-gradient(600px 240px at 100% 0%, rgba(255,87,34,0.12), transparent 60%),
+        var(--gray-900);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cta-block h3 {
+      font-size: 32px; line-height: 36px; letter-spacing: -0.025em; font-weight: 600;
+      margin: 0 0 8px; max-width: 540px;
+    }
+    .cta-block p {
+      margin: 0; color: var(--gray-500);
+      font-size: 16px; line-height: 26px; max-width: 540px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      border-top: 1px solid var(--gray-700);
+      padding: 48px 0;
+      color: var(--gray-500);
+      font-size: 13px;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-mono { font-family: var(--font-mono); }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      h1.display { font-size: 48px; line-height: 52px; letter-spacing: -0.035em; }
+      .section-title { font-size: 32px; line-height: 36px; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .platform { grid-template-columns: 1fr; }
+      .platform .card.span2 { grid-column: auto; }
+      .platform-row { grid-template-columns: 1fr; }
+      .cta-block { padding: 32px; }
+      section { padding: 72px 0; }
+      .hero { padding: 72px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <span class="brand-mark"></span>
+        OnFire Club
+      </a>
+      <nav class="nav-links">
+        <a href="#manifesto">Manifesto</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#plataforma">Plataforma</a>
+        <a href="#diferencial">Diferencial</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="#" class="btn btn-ghost">Entrar</a>
+        <a href="#" class="btn btn-primary">Lista de espera</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="pill pill-fire">
+        <span class="pill-dot"></span>
+        v0.1 — Movimento em construção pública
+      </span>
+
+      <h1 class="display">
+        Tecnologia para empresários <span class="accent">lucrarem mais</span> e trabalharem menos.
+      </h1>
+
+      <p class="hero-sub">
+        Aprenda a construir sistemas, automatizar processos e usar IA como vantagem competitiva real — sem virar dev, sem depender de terceiros, sem abrir mão da vida que você quer ter.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary btn-lg">Entrar para a lista →</a>
+        <a href="#" class="btn btn-secondary btn-lg">Ver manifesto</a>
+      </div>
+
+      <div class="hero-meta">
+        <div><strong>40k+</strong> alunos formados via OneBitCode</div>
+        <div><strong>3</strong> co-fundadores</div>
+        <div><strong>1</strong> objetivo: o negócio trabalhar para você</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAL -->
+  <section id="diferencial">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">// O que diferencia</div>
+        <h2 class="section-title">Três coisas que quase ninguém tem ao mesmo tempo.</h2>
+        <p class="section-desc">Não é curso de programação. Não é agência. Não é consultoria genérica. É o lugar onde o empresário aprende a usar tech para libertar tempo e capturar mercado.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-num">01 — Credibilidade</div>
+          <h3 class="card-title">Técnica real, não teórica</h3>
+          <p class="card-desc">+40 mil alunos formados em desenvolvimento de software. A base técnica já existe — agora aplicada ao mundo dos negócios.</p>
+        </div>
+        <div class="card">
+          <div class="card-num">02 — Foco</div>
+          <h3 class="card-title">Empresário, não dev</h3>
+          <p class="card-desc">Tudo parte do resultado, não da ferramenta. Você sai com algo no ar: uma LP, um agente de WhatsApp, 30 posts gerados com IA.</p>
+        </div>
+        <div class="card">
+          <div class="card-num">03 — Prova</div>
+          <h3 class="card-title">Fundador que vive o método</h3>
+          <p class="card-desc">Léo Scorza — nômade, focado em resultado, construindo em público. O lifestyle é evidência, não tema.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATAFORMA -->
+  <section id="plataforma" style="border-top: 1px solid var(--gray-700);">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">// A plataforma</div>
+        <h2 class="section-title">Cinco seções. Um sistema operando para você.</h2>
+        <p class="section-desc">Estratégia antes de ferramenta. Implementação real do zero. Resultados em mini documentários. Acesso direto aos principais LLMs.</p>
+      </div>
+
+      <div class="platform">
+        <div class="card">
+          <div class="card-num">// stack</div>
+          <h3 class="card-title">Ferramentas que importam</h3>
+          <div>
+            <div class="stack-line"><span class="dot"></span> Claude <span class="tag">LLM</span></div>
+            <div class="stack-line"><span class="dot"></span> Make &middot; n8n <span class="tag">automação</span></div>
+            <div class="stack-line"><span class="dot"></span> Cursor <span class="tag">build</span></div>
+            <div class="stack-line"><span class="dot"></span> Vercel &middot; Supabase <span class="tag">infra</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-num">// trilha</div>
+          <h3 class="card-title">Estratégia → Implementação → Resultado</h3>
+          <p class="card-desc">Comunidade própria, modelo de assinatura anual. Trilha completa de estratégia, ferramentas, implementações e casos reais — com diagnóstico, biblioteca de prompts, calculadora de ROI e planejador de software.</p>
+        </div>
+
+        <div class="card span2">
+          <div class="card-num">// para quem</div>
+          <div class="platform-row">
+            <div>
+              <h3 class="card-title">O empresário zen</h3>
+              <p class="card-desc">Liberdade geográfica, propósito e qualidade de vida. Tecnologia como ferramenta de libertação.</p>
+            </div>
+            <div>
+              <h3 class="card-title">O empresário performance</h3>
+              <p class="card-desc">Crescimento e resultado. Vantagem competitiva real sobre a concorrência, no menor tempo possível.</p>
+            </div>
+            <div>
+              <h3 class="card-title">Os dois ao mesmo tempo</h3>
+              <p class="card-desc">Quem entende que escala sem sistema é jaula. E que sistema sem visão é commodity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="manifesto">
+    <div class="container">
+      <div class="cta-block">
+        <div>
+          <h3>Mais que uma empresa. Um movimento.</h3>
+          <p>Para quem decidiu parar de trabalhar para o negócio e fazer o negócio trabalhar para si.</p>
+        </div>
+        <div style="display:flex; gap: 12px;">
+          <a href="#" class="btn btn-primary btn-lg">Quero entrar</a>
+          <a href="#" class="btn btn-secondary btn-lg">Newsletter semanal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        OnFire Club
+      </div>
+      <div class="footer-mono">
+        © 2026 OnFire Club &middot; Léo Scorza, Flávia Modesto &amp; Gabriel Araújo
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
